@@ -54,7 +54,7 @@ function getClientIp(req) {
         }
 
         // Load-balancers (AWS ELB) or proxies.
-        const xForwardedFor = getClientIpFromXForwardedFor(req.headers['x-forwarded-for']);
+        const xForwardedFor = getClientIpFromXForwardedFor(req.headers['x-forwarded-for'] || req.headers['X-Forwarded-For']);
         if (is.ip(xForwardedFor)) {
             return xForwardedFor;
         }
